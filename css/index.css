@@ -1,11 +1,10 @@
 /* You can find detailed information at http://wiki.simplemachines.org/smf/Curve2_CSS
 /* Index */
 html {
-	background: #3e5a78;
+	background: #35304E url(../images/bg_faded.jpg) top left no-repeat;
 }
 body {
-	background: #e9eef2;
-	font: 83.33%/150% "Segoe UI", "Helvetica Neue", "Nimbus Sans L", Arial, "Liberation Sans", sans-serif;
+	font: 83.33%/150% "Roboto", "Helvetica Neue", Arial, "Liberation Sans", sans-serif;
 	color: #222;
 	margin: 0 auto;
 	padding: 0;
@@ -1066,15 +1065,14 @@ img.sort, .sort {
 /* These divisions wrap the forum sections when a forum width is set. */
 #wrapper, .frame {
 	margin: 0 auto;
+	width: 100% !important;
 }
 
 /* Box-shadow only on this one. */
 #wrapper {
 	clear: both;
-	background: #fff;
-	border: 1px solid #b8b8b8;
-	border-radius: 8px;
-	box-shadow: 0 2px 3px rgba(0,0,0,0.14);
+	box-sizing: border-box;
+	padding: 0 0 0 20px;
 }
 
 /* The framing graphics */
@@ -1084,7 +1082,8 @@ img.sort, .sort {
 	padding: 0 4px;
 	border-bottom: 1px solid #bbb;
 	box-shadow: 0 1px 4px rgba(0,0,0,0.16);
-	background: #FFFFFF;
+	background: #0f0;
+	display: none;
 }
 #top_section .frame{
 	clear: both;
@@ -1150,8 +1149,18 @@ img.sort, .sort {
 }
 /* The logo and slogan. */
 #header {
-	padding: 2px 2px 12px 2px;
+	height: 67px;
+	width: 100%;
 }
+
+#header img#hlogo {
+	margin-left: 64px;
+}
+
+#header.smaller {
+    height: 70px;
+}
+
 #header::after {
 	content:"";
 	display: block;
@@ -1195,12 +1204,12 @@ img#smflogo {
 /*
 /* The user info, news, etc.*/
 #upper_section {
-	padding: 2px 2px 0 2px;
+	padding: 0 ;
 	margin: 0;
+	display:none;
 }
 #inner_section {
 	padding: 12px 10px 2px 10px;
-	border-radius: 6px 6px 0 0;
 }
 #inner_section::after {
 	content:"";
@@ -1301,7 +1310,7 @@ ul li.greeting {
 	clear: both;
 }
 #main_content_section {
-	padding: 5px 12px 16px 12px;
+	padding: 5px 0px 16px 12px;
 }
 #main_content_section::after {
 	content:"";
@@ -3545,14 +3554,9 @@ ul.post_options li {
 /* General Classes */
 /* Cat_bar / catbg */
 div.cat_bar {
-	background: #557ea0;
-	border-bottom: 1px solid #777;
+	background: #586073;
 	padding: 0;
-	border-radius: 6px 6px 0 0;
-	box-shadow: 0 16px 20px rgba(255,255,255,0.15) inset;
-	text-shadow: -1px -1px 1px rgba(0,0,0,0.2);
 	box-sizing: border-box;
-	margin-bottom: 1px;
 }
 .cat_bar h3 {
 	padding: 8px 12px 6px 12px;
@@ -3568,7 +3572,6 @@ div.cat_bar {
 h3.catbg {
 	overflow: hidden;
 	font-size: 1.1em;
-	font-family: "Tahoma", sans-serif;
 	font-weight: bold;
 	line-height: 1.5em;
 	padding: 8px;
@@ -3591,9 +3594,6 @@ h3.catbg .icon {
 	margin: 10px 0 0 0;
 	padding: 12px 16px;
 	background: #F8F8F8;
-	border: 1px solid #c5c5c5;
-	border-radius: 7px;
-	box-shadow: 0 -2px 2px rgba(0,0,0,0.1);
 	overflow: auto;
 }
 /* TitleBar & SubBar */
@@ -3774,17 +3774,15 @@ h3.profile_hd {
 .button_submit, .button_reset, .button_link, .topbottom,
 .dropmenu li ul, .top_menu, .dropmenu li li:hover, .button,
 .dropmenu li li:hover>a, .dropmenu li li a:focus, .dropmenu li li a:hover,
-#top_section, #search_form .button_submit, .quickbuttons li,
+ #search_form .button_submit, .quickbuttons li,
 .quickbuttons li ul, .quickbuttons li ul li:hover, .quickbuttons ul li a:focus,
 .popup_window, #inner_section {
 	background: #FFFFFF; /* fallback for some browsers */
-	background-image: linear-gradient(to bottom, #E2E9F3 0%, #FFFFFF 70%);
 }
 /* Well some of them has different gradient effect on hover */
 .button:hover, .button_submit:hover, .button_reset:hover, .button_link:hover,
 .topbottom:hover,#search_form .button_submit:hover, .quickbuttons li:hover {
 	background: #FFFFFF;
-	background-image: linear-gradient(to bottom, #FFFFFF 0%, #E2E9F3 70%);
 }
 /* If it fits I sits... */
 .navigate_section ul, .popup_content, .up_contain {

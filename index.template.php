@@ -89,14 +89,13 @@ function template_html_above()
 
 	// load in any css from mods or themes so they can overwrite if wanted
 	template_css();
-
-	// Save some database hits, if a width for multiple wrappers is set in admin.
-	if (!empty($settings['forum_width']))
-		echo '
-	<style type="text/css">#wrapper, .frame {width: ', $settings['forum_width'], ';}</style>';
+	
+	echo '<link href="http://fonts.googleapis.com/css?family=Roboto:500,400,700,900,300|Material+Icons" rel="stylesheet" type="text/css">';
+	echo '<link href="',$settings['theme_url'],'/css/material.deep_purple-orange.min.css" rel="stylesheet" type="text/css">';
 
 	// load in any javascript files from mods and themes
 	template_javascript();
+	echo '<script type="text/javascript" src="',$settings['theme_url'],'/scripts/material.min.js"></script>';
 
 	echo '
 	<meta name="description" content="', !empty($context['meta_description']) ? $context['meta_description'] : $context['page_title_html_safe'], '">', !empty($context['meta_keywords']) ? '
@@ -115,7 +114,7 @@ function template_html_above()
 	/* What is your Lollipop's color?
 	Theme Authors you can change here to make sure your theme's main color got visible on tab */
 	echo '
-	<meta name="theme-color" content="#557EA0">';
+	<meta name="theme-color" content="#0f0">';
 
 	// Please don't index these Mr Robot.
 	if (!empty($context['robot_no_index']))
@@ -279,19 +278,27 @@ function template_body_above()
 	echo '
 		</div>
 	</div>';
+	
+	echo '
+		<!-- Uses a header that scrolls with the text, rather than staying
+  locked at the top -->
+<div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">',$context['user']['name'],'</span>
+    <nav class="mdl-navigation">
+      ',template_menu_mdl(),'
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="page-content">
+	';
 
 	echo '
 	<div id="header">
-		<div class="frame">
-			<h1 class="forumtitle">
-				<a id="top" href="', $scripturl, '">', empty($context['header_logo_url_html_safe']) ? $context['forum_name_html_safe'] : '<img src="' . $context['header_logo_url_html_safe'] . '" alt="' . $context['forum_name_html_safe'] . '">', '</a>
-			</h1>';
-
-	echo '
-			', empty($settings['site_slogan']) ? '<img id="smflogo" src="' . $settings['images_url'] . '/smflogo.png" alt="Simple Machines Forum" title="Simple Machines Forum">' : '<div id="siteslogan" class="floatright">' . $settings['site_slogan'] . '</div>', '';
+		<a id="top" href="', $scripturl, '"><img id="hlogo" src="',$settings['theme_url'],'/images/logo.png" alt="' . $context['forum_name_html_safe'] . '"></a>
+	';
 
 	echo'
-		</div>
 	</div>
 	<div id="wrapper">
 		<div id="upper_section">
@@ -367,7 +374,9 @@ function template_html_below()
 	// load in any javascipt that could be deferred to the end of the page
 	template_javascript(true);
 
-	echo '
+	echo '</div>
+  </main>
+</div>
 </body>
 </html>';
 }
@@ -498,6 +507,25 @@ function template_menu()
 	echo '
 					</ul>
 				</div>';
+}
+
+function template_menu_mdl()
+{
+	{
+	global $context;
+
+	foreach ($context['menu_buttons'] as $act => $button)
+	{
+		echo '
+						
+							<a class="mdl-navigation__link', $button['active_button'] ? ' active' : '', '" href="', $button['href'], '"', isset($button['target']) ? ' target="' . $button['target'] . '"' : '', '>
+								', $button['icon'], $button['title'], '
+							</a>';
+
+		
+	}
+
+}
 }
 
 /**
